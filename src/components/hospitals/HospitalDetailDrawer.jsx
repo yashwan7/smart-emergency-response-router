@@ -42,22 +42,22 @@ export const HospitalDetailDrawer = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/30 backdrop-blur-xs flex justify-end animate-fade-in">
-      <div className="w-full max-w-lg bg-white/95 backdrop-blur-2xl h-full shadow-2xl border-l border-slate-200 p-6 overflow-y-auto flex flex-col justify-between animate-slide-in-right">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-xs flex justify-end animate-fade-in">
+      <div className="w-full max-w-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl h-full shadow-2xl border-l border-slate-200 dark:border-slate-800 p-4 sm:p-6 overflow-y-auto flex flex-col justify-between animate-slide-in-right">
         
         {/* Header */}
         <div>
-          <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-4 sm:mb-5">
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-extrabold text-slate-900">{hospital.name}</h2>
+                <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-slate-100">{hospital.name}</h2>
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                  hospital.status === 'ONLINE' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                  hospital.status === 'ONLINE' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
                 }`}>
                   {hospital.status}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5 text-slate-400" />
                 <span>{hospital.address} · {hospital.distanceKm} km</span>
               </p>
@@ -65,7 +65,7 @@ export const HospitalDetailDrawer = () => {
 
             <button
               onClick={() => setSelectedHospitalId(null)}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

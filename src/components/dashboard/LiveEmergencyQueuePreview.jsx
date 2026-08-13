@@ -4,7 +4,14 @@ import { EsiBadge } from '../common/EsiBadge';
 import { ChevronRight, Clock, AlertTriangle } from 'lucide-react';
 
 export const LiveEmergencyQueuePreview = () => {
-  const { emergencies, setActiveTab, setSelectedPatientId } = useSimulation();
+  const { 
+    emergencies, 
+    setActiveTab, 
+    setSelectedPatientId, 
+    severityWeight = 2.0, 
+    agingWeight = 0.5, 
+    setDecisionModalPatientId 
+  } = useSimulation();
 
   const waitingPatients = emergencies.filter(e => e.status === 'WAITING');
 

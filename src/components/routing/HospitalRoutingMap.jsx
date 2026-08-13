@@ -58,26 +58,26 @@ export const HospitalRoutingMap = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-4 sm:space-y-6 animate-fade-in">
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
             ROUTE & FEASIBILITY ENGINE
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Resource-constrained spatial allocation & live dispatch routing map
           </p>
         </div>
 
         {/* Patient Selection Dropdown */}
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-bold text-slate-700">Select Patient Case:</span>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 w-full sm:w-auto">
+          <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Select Patient Case:</span>
           <select
             value={selectedPatientId}
             onChange={(e) => setSelectedPatientId(e.target.value)}
-            className="px-3.5 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs font-bold focus:ring-2 focus:ring-slate-900 shadow-2xs"
+            className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-mono text-xs font-bold focus:ring-2 focus:ring-slate-900 dark:focus:ring-rose-500 shadow-2xs"
           >
             {emergencies.map(p => (
               <option key={p.id} value={p.id}>
@@ -89,37 +89,37 @@ export const HospitalRoutingMap = () => {
       </div>
 
       {/* Main Map + Side Panel Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         
         {/* Large Visual Map Area (2 cols) */}
-        <div className="lg:col-span-2 glass-card p-5 relative overflow-hidden flex flex-col justify-between min-h-[500px]">
+        <div className="lg:col-span-2 glass-card p-3 sm:p-5 relative overflow-hidden flex flex-col justify-between min-h-[400px] sm:min-h-[500px]">
           
           {/* Map Controls Header Overlay */}
-          <div className="flex items-center justify-between z-10 bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-slate-200 shadow-sm mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 z-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm mb-4">
             <div className="flex items-center gap-3">
-              <Navigation className="w-5 h-5 text-rose-600 animate-pulse" />
+              <Navigation className="w-5 h-5 text-rose-600 dark:text-rose-500 animate-pulse shrink-0" />
               <div>
-                <div className="text-xs font-bold text-slate-900">
+                <div className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">
                   Routing Target: {activeTargetHospital.name}
                 </div>
-                <div className="text-[11px] text-slate-500 font-medium">
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   Patient {selectedPatient?.id} → {activeTargetHospital.distanceKm} km · ETA {activeTargetHospital.baseEtaMins} min
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-xs">
-              <span className="flex items-center gap-1 text-rose-700 font-semibold px-2 py-0.5 rounded bg-rose-50 border border-rose-200">
+            <div className="flex items-center gap-2 text-xs self-start sm:self-auto">
+              <span className="flex items-center gap-1 text-rose-700 dark:text-rose-300 font-semibold px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-[11px]">
                 <span className="pulse-dot-red" /> Patient
               </span>
-              <span className="flex items-center gap-1 text-emerald-700 font-semibold px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200">
+              <span className="flex items-center gap-1 text-emerald-700 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-[11px]">
                 <span className="pulse-dot-green" /> Feasible Hospital
               </span>
             </div>
           </div>
 
           {/* Real Interactive Google Map */}
-          <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
+          <div className="relative w-full h-[300px] sm:h-[400px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner">
             <GoogleHospitalMap 
               hospitals={hospitals} 
               winningHospitalId={activeTargetHospital?.id} 
@@ -129,11 +129,10 @@ export const HospitalRoutingMap = () => {
             />
           </div>
 
-
           {/* Map Footer Legend */}
-          <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-500 font-medium">
+          <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-xs text-slate-500 dark:text-slate-400 font-medium">
             <span>Route calculation incorporates traffic congestion + resource constraints</span>
-            <span className="font-mono text-slate-400">Map Bounds: Regional Control Zone</span>
+            <span className="font-mono text-slate-400 text-[11px]">Map Bounds: Regional Control Zone</span>
           </div>
 
         </div>

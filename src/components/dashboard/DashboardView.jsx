@@ -25,7 +25,7 @@ export const DashboardView = () => {
     <div className="space-y-6 animate-fade-in">
       
       {/* Top Section 1: 5 KPI Metric Cards with Animated Count Numbers */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
         <KpiCard
           icon={Activity}
           title="Active Emergencies"

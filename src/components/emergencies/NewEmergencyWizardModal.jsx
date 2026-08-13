@@ -100,55 +100,57 @@ export const NewEmergencyWizardModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-      <div className="w-full max-w-xl bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-fade-in">
+      <div className="w-full max-w-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-8 relative overflow-hidden max-h-[92vh] flex flex-col justify-between">
         
-        {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
-          <div>
-            <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">
-              REGISTER NEW EMERGENCY CASE
-            </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Multi-step deterministic ESI triage wizard
-            </p>
+        <div>
+          {/* Modal Header */}
+          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 mb-4 sm:mb-6">
+            <div>
+              <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
+                REGISTER NEW EMERGENCY CASE
+              </h2>
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                Multi-step deterministic ESI triage wizard
+              </p>
+            </div>
+
+            <button
+              onClick={() => setIsNewEmergencyModalOpen(false)}
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <button
-            onClick={() => setIsNewEmergencyModalOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+          {/* Wizard Progress Steps Indicator */}
+          <div className="flex items-center justify-between mb-6 px-1 sm:px-2 overflow-x-auto no-scrollbar">
+            {['Patient', 'Vitals', 'Resources', 'Review'].map((label, idx) => {
+              const stepNum = idx + 1;
+              const isDone = step > stepNum;
+              const isCurrent = step === stepNum;
 
-        {/* Wizard Progress Steps Indicator */}
-        <div className="flex items-center justify-between mb-8 px-2">
-          {['Patient Info', 'Symptoms & Vitals', 'Resources', 'Review'].map((label, idx) => {
-            const stepNum = idx + 1;
-            const isDone = step > stepNum;
-            const isCurrent = step === stepNum;
-
-            return (
-              <div key={idx} className="flex items-center gap-2">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${
-                  isDone 
-                    ? 'bg-emerald-600 text-white' 
-                    : isCurrent 
-                    ? 'bg-rose-600 text-white ring-4 ring-rose-100' 
-                    : 'bg-slate-200 text-slate-500'
-                }`}>
-                  {isDone ? <CheckCircle2 className="w-4 h-4" /> : stepNum}
+              return (
+                <div key={idx} className="flex items-center gap-1.5 shrink-0">
+                  <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-[11px] sm:text-xs transition-colors ${
+                    isDone 
+                      ? 'bg-emerald-600 text-white' 
+                      : isCurrent 
+                      ? 'bg-rose-600 text-white ring-2 sm:ring-4 ring-rose-100 dark:ring-rose-950' 
+                      : 'bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                  }`}>
+                    {isDone ? <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : stepNum}
+                  </div>
+                  <span className={`text-[11px] sm:text-xs font-semibold ${
+                    isCurrent ? 'text-slate-900 dark:text-slate-100 font-bold' : 'text-slate-400'
+                  }`}>
+                    {label}
+                  </span>
+                  {idx < 3 && <div className="w-3 sm:w-8 h-0.5 bg-slate-200 dark:bg-slate-800 rounded-full mx-0.5 sm:mx-1" />}
                 </div>
-                <span className={`text-xs font-semibold hidden sm:inline ${
-                  isCurrent ? 'text-slate-900 font-bold' : 'text-slate-400'
-                }`}>
-                  {label}
-                </span>
-                {idx < 3 && <div className="w-6 sm:w-10 h-0.5 bg-slate-200 rounded-full mx-1" />}
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Form Body - STEP 1 */}

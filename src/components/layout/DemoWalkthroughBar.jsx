@@ -77,35 +77,35 @@ export const DemoWalkthroughBar = () => {
   }
 
   return (
-    <div className="bg-slate-900 text-white border-b border-slate-800 px-4 py-2 text-xs flex items-center justify-between gap-3 shadow-md z-30">
-      <div className="flex items-center gap-3 overflow-x-auto py-0.5 no-scrollbar">
-        <div className="flex items-center gap-1.5 font-bold text-rose-400 shrink-0 uppercase tracking-wider">
-          <Sparkles className="w-4 h-4 text-amber-400" />
-          <span>Interactive Demo Flow:</span>
+    <div className="bg-slate-900 text-white border-b border-slate-800 px-3 sm:px-4 py-1.5 sm:py-2 text-xs flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 shadow-md z-30">
+      <div className="flex items-center gap-2 overflow-x-auto py-0.5 no-scrollbar max-w-full sm:max-w-none">
+        <div className="flex items-center gap-1 font-bold text-rose-400 shrink-0 uppercase tracking-wider text-[11px] sm:text-xs">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span className="hidden xs:inline">Demo Flow:</span>
         </div>
 
         {/* Step pill */}
-        <div className="flex items-center gap-2 bg-slate-800 px-3 py-1 rounded-xl border border-slate-700 shrink-0">
-          <span className="font-mono font-bold text-amber-400">Step {step.id}/{DEMO_STEPS.length}</span>
-          <span className="font-bold text-white">{step.title}</span>
+        <div className="flex items-center gap-1.5 bg-slate-800 px-2.5 py-1 rounded-xl border border-slate-700 shrink-0 text-xs">
+          <span className="font-mono font-bold text-amber-400 text-[11px]">S{step.id}/{DEMO_STEPS.length}</span>
+          <span className="font-bold text-white truncate max-w-[130px] xs:max-w-[200px] sm:max-w-none">{step.title}</span>
           <span className="text-slate-400 font-normal hidden md:inline">• {step.desc}</span>
         </div>
       </div>
 
       {/* Control Buttons */}
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-1.5 shrink-0 ml-auto sm:ml-0">
         <button
           onClick={handlePrev}
-          className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-[11px] transition-colors"
+          className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-[10px] sm:text-[11px] transition-colors"
         >
-          Previous
+          Prev
         </button>
 
         <button
           onClick={handleNext}
-          className="px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition-colors flex items-center gap-1 shadow-sm"
+          className="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-[11px] sm:text-xs transition-colors flex items-center gap-0.5 shadow-sm"
         >
-          <span>Next Step</span>
+          <span>Next</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
 
@@ -119,7 +119,7 @@ export const DemoWalkthroughBar = () => {
 
         <button
           onClick={() => setIsOpen(false)}
-          className="p-1 text-slate-400 hover:text-white transition-colors ml-1"
+          className="p-1 text-slate-400 hover:text-white transition-colors"
           title="Minimize Demo Bar"
         >
           <X className="w-3.5 h-3.5" />
